@@ -18,26 +18,56 @@ fun listTypes() {
     for (i in 1 until listGeneration2.size)
         println(listGeneration2[i].toString())
 
-    changabelNumberList= changabelNumberList.sorted().toMutableList()
+    changabelNumberList = changabelNumberList.sorted().toMutableList()
     println(changabelNumberList)
 
-    changabelNumberList = mutableListOf<Int>(7,1, 2, 3, 4, 5, 2, 4, 8, 9)
+    changabelNumberList = mutableListOf<Int>(7, 1, 2, 3, 4, 5, 2, 4, 8, 9)
 
-    changabelNumberList= changabelNumberList.distinct().sorted().toMutableList()
+    changabelNumberList = changabelNumberList.distinct().sorted().toMutableList()
     println(changabelNumberList)
-    println(1 in changabelNumberList )
+    println(1 in changabelNumberList)
 
-    var bucket : MutableList<Int>? =mutableListOf()
+    var bucket: MutableList<Int>? = mutableListOf()
 
-    for ( i in changabelNumberList){
-        if(i%2==0){
+    for (i in changabelNumberList) {
+        if (i % 2 == 0) {
             bucket?.add(i)
         }
     }
 
     println(bucket)
 
-    changabelNumberList.removeIf { it%2==0 }
-
+    changabelNumberList.removeIf { it % 2 == 0 }
+    println("is ittareated number in list " + IsItarateList(changabelNumberList).toString())
 
 }
+
+
+fun IsItarateList(list: List<Int>): Boolean {
+    var nO: Int = 0
+    for (i in 1 until list.count()) {
+        for (j in i until list.count()) {
+            if (list[i] == list[j]) {
+                nO++
+                return true
+
+            }
+        }
+    }
+    return false
+}
+
+
+fun IsItaratedListFast(list: List<Int>): Boolean {
+    var checkedElemenets: HashSet<Int> = hashSetOf<Int>()
+    for (number in list) {
+        if (checkedElemenets.contains(number)) {
+            return true
+        } else {
+            checkedElemenets.add(number)
+        }
+    }
+
+    return false
+}
+

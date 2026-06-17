@@ -1,5 +1,7 @@
 package com.megrur.niftiyev.ControlFlow
 
+import com.megrur.niftiyev.Classes.Enums.UserStatus
+
 fun conditions() {
 
     println("=======condition types ======")
@@ -13,7 +15,7 @@ fun conditions() {
 
     val userCart = arrayListOf("Laptop", "Mouse", "Mouse")
 
-    var userConditionType = arrayListOf<String>("PREMIUM", "VIP", "REGULAR")
+    var userConditionType: List<UserStatus> = UserStatus.entries
 
     val userStatus = userConditionType[0]
 
@@ -27,9 +29,9 @@ fun conditions() {
     val deliveryFee = if (totalPriceForCart > 1000) 0 else 10
 
     var totalDiscountedPrice = when (userStatus) {
-        "PREMIUM" -> totalPriceForCart * 0.8
-        "VIP" -> totalPriceForCart * 0.9
-        "REGULAR" -> totalPriceForCart
+        UserStatus.PREMIUM -> totalPriceForCart * 0.8
+        UserStatus.VIP -> totalPriceForCart * 0.9
+        UserStatus.REGULAR -> totalPriceForCart
         else -> totalPriceForCart
     }
 
@@ -37,7 +39,7 @@ fun conditions() {
 
     when (courierStatus) {
         "OFFLINE" -> println("The order was cancelled.")
-        "BUSY" -> if (userStatus == "REGULAR") {
+        "BUSY" -> if (userStatus == UserStatus.REGULAR) {
             println("The order was queued because couriers are busy.")
         } else {
             println("The order was confirmed and assigned to a courier.")
